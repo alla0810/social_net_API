@@ -44,7 +44,7 @@ connection.once('open', async () => {
   // Add courses to the collection and await the results
   await Thought.collection.insertOne({
     thoughtText: 'I want to get happy',
-    username: getRandomName(),
+    username: users[0].username,
   });
 
   // Log out the seed data to indicate what should appear in the database

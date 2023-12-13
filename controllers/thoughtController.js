@@ -53,29 +53,27 @@ module.exports = {
   },
   // Delete a course
   async deleteThought(req, res) {
-    try {
+
       const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
 
       if (!thought) {
         res.status(404).json({ message: 'No thought with that ID' });
       }
 
+      const username = thought.username;
+
       const user = await User.findOneAndUpdate(
-        { username: req.body.username },
+        { username: username },
         { $pull: {thoughts: {_id: thought._id} } },
         { new: true }
         );
   
       if (!user)
       {
-        res.status(500).json({ message: 'Fail to update thought to user' });
+        res.status(404).json({ message: 'Fail to update thought to user' });
       }
   
-
-      res.json({ message: 'Thought and user deleted!' });
-    } catch (err) {
-      res.status(500).json(err);
-    }
+      res.json({ message: 'Thought deleted!' });
   },
   // Update a thought
   async updateThought(req, res) {

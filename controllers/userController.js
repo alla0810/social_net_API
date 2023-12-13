@@ -30,7 +30,7 @@ module.exports = {
     try {
       const users = await User.find();
 
-      console.log(users);
+//      console.log(users);
 //      console.log(users.friends);
 
       res.json(users);
@@ -139,10 +139,13 @@ module.exports = {
   },
   // Remove friend from a user
   async removeFriend(req, res) {
+    console.log('removeFriend');
+    console.log(req.params, req.body);
+
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $pull: { friends: { _id: req.params.friendId } } },
+        { $pull: { friends: req.params.friendId } },
         { runValidators: true, new: true }
       );
 

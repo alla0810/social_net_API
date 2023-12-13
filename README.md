@@ -1,4 +1,4 @@
-# social_net_API
+# social_net_API  ![License](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)
 
 ## Description
 
@@ -19,20 +19,41 @@ GIVEN a social network API.
 * WHEN you you test API POST and DELETE routes in Insomnia, THEN you are able to successfully create and delete reactions to thoughts and add and remove friends to a user's friend list.
 
 
+## Rest API Routes
+* This application provides Rest APIs for a social network web application
+
+1. /api/users
+  * `GET` all users
+  * `GET` a single user by its `_id` and populated thought and friend data
+  * `POST` a new user
+  * `PUT` to update a user by its `_id`
+  * `DELETE` to remove user by its `_id` and to remove a user's associated thoughts
+
+2. /api/users/:userId/friends/:friendId
+  * `POST` to add a new friend to a user's friend list
+  * `DELETE` to remove a friend from a user's friend list  
+
+3. /api/thoughts
+  * `GET` to get all thoughts
+  * `GET` to get a single thought by its `_id`
+  * `POST` to create a new thought and to push the created thought's `_id` to the associated user's `thoughts` array field
+  * `PUT` to update a thought by its `_id`
+  * `DELETE` to remove a thought by its `_id`  
+
+4. /api/thoughts/:thoughtId/reactions
+  * `POST` to create a reaction stored in a single thought's `reactions` array field
+  * `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
 
 
-
-## Direct Access from Heroku
-https://cool-tech-blog-c417147650ea.herokuapp.com/
+## Walkthrough Video
+https://drive.google.com/file/d/1VI9CdqmGv33BuaDoVtsrAnrLlC8j0_bi/view
 
 ## Installation on your local machine
 * After downloading from GitHub, you can run this program on your local machine by following the procedure below:
-1. Get into your mysql account by running `mysql -u <username> -p`, and insert your mysql password after prompting.
-2. On another terminal, run `source <source code path>\db\schema.sql` to initialize database.
-3. Inside the same terminal, run `npm run seed` for seeding the database table.
-4. At the same terminal, run `nodemon server.js` to run the backend server for tech-blog.
-5. On an internet browser, type in the URL `localhost:3001`.
-6. You're ready to go!
+1. Run `npm run seed` to seed data. Seed data create 5 users and 1 thought. 
+2. Run `nodemon index.js` to run backend server on your local machine.
+3. From Insomnia, send Restful API queries.
+
 
 
 ## Source Code References
@@ -44,14 +65,10 @@ https://cool-tech-blog-c417147650ea.herokuapp.com/
 ## Contact
   * Author: Kyosook Shin
   * Author's Email: kyosook.shin@gmail.com  
-  * GitHub: https://github.com/alla0810/tech-blog
-  * Heroku: https://cool-tech-blog-c417147650ea.herokuapp.com/
+  * GitHub: https://github.com/alla0810/social_net_API
 
 
 ## Screenshot  
 
-<img src='./images/screen1.png' width="800">  
-<img src='./images/screen2.png' width="800">
-<img src='./images/screen3.png' width="800">  
-<img src='./images/screen4.png' width="800">  
-<img src='./images/screen5.png' width="800">  
+<img src='./public/image/screen1.png' width="800">  
+<img src='./public/image/screen2.png' width="800">
